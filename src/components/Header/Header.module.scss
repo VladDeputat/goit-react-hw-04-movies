@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 5px 24px -5px rgba(34, 60, 80, 0.6);
+}
+
+.navList {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  margin: 10px;
+}
+
+.navItem {
+  font-size: 30px;
+  font-weight: 500;
+  margin-left: 30px;
+}
+
+.activeLink {
+  color: rgb(194, 10, 10);
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}

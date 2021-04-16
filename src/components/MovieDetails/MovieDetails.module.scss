@@ -1,0 +1,48 @@
+// * {
+//   outline: 1px solid tomato;
+// }
+
+.goBackBtn {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.4;
+  padding-left: 25px;
+  padding-right: 25px;
+  height: 35px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  transition: all linear 250ms;
+  border: 1px solid #454545;
+  background-color: #fff;
+  margin-bottom: 20px;
+
+  &:hover {
+    border-color: rgb(194, 10, 10);
+    color: rgb(194, 10, 10);
+    box-shadow: 0px 5px 24px -5px rgba(34, 60, 80, 0.6);
+  }
+}
+
+.container {
+  padding: 20px 40px;
+}
+
+.movieContainer {
+  display: flex;
+}
+
+.imgContainer {
+  width: 350px;
+}
+
+.infoContainer {
+  width: 600px;
+  padding: 0 30px 0 30px;
+}
+
+.adInfoListItem {
+  font-size: 20px;
+  font-weight: 500;
+  list-style: disc;
+}

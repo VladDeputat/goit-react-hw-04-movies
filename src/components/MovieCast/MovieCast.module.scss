@@ -1,0 +1,20 @@
+.castConteiner {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
+}
+
+.actorCard {
+  width: calc(100% / 6 - 20px);
+}
+
+.actorName {
+  margin: 0;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.actorCharacter {
+  margin: 0;
+}
