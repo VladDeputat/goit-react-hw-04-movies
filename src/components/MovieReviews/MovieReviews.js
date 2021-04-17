@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Api from '../../servises/Api';
+import Loader from '../Loader/Loader';
 import {
   reviewsConteiner,
   reviewAuthor,
@@ -9,11 +10,14 @@ import {
 export default class MovieRewiews extends Component {
   state = {
     reviews: [],
+    isLoading: false,
   };
 
   async componentDidMount() {
+    this.setState({ isLoading: true });
     try {
-      await Api.getMovieReviews(this.props.match.params.movieId).then(res =>
+      const id = this.props.match.params.movieId;
+      await Api.getMovieReviews(id).then(res =>
         this.setState({ reviews: res.data.results }),
       );
       window.scrollBy({
@@ -23,21 +27,26 @@ export default class MovieRewiews extends Component {
     } catch (error) {
       console.log(error);
     } finally {
+      this.setState({ isLoading: false });
     }
   }
 
   render() {
     return (
-      <div className={reviewsConteiner}>
-        <ul>
-          {this.state.reviews.map(({ author, content }) => (
-            <li key={author}>
-              <h4 className={reviewAuthor}>{author}</h4>
-              <p className={reviewsContent}>{content}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <>
+        {this.state.isLoading && <Loader />}
+        {this.state.reviews.length === 0 && <h1>No reviews yet ¯\_(ツ)_/¯</h1>}
+        <div className={reviewsConteiner}>
+          <ul>
+            {this.state.reviews.map(({ author, content }) => (
+              <li key={author}>
+                <h4 className={reviewAuthor}>{author}</h4>
+                <p className={reviewsContent}>{content}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </>
     );
   }
 }

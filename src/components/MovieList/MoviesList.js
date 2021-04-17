@@ -1,5 +1,11 @@
 import { NavLink } from 'react-router-dom';
-import { movieList, movieListItem, movieTitle } from './MovieList.module.scss';
+import {
+  movieList,
+  movieListItem,
+  movieTitle,
+  movieImg,
+} from './MovieList.module.scss';
+import noImg from '../../img/noImg.jpg';
 
 const MoviesList = ({ movies }) => (
   <ul className={movieList}>
@@ -7,7 +13,12 @@ const MoviesList = ({ movies }) => (
       <li key={id} className={movieListItem}>
         <NavLink to={`/movies/${id}`}>
           <img
-            src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+            className={movieImg}
+            src={
+              poster_path
+                ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+                : noImg
+            }
             alt={name || title}
           />
           <p className={movieTitle}>{name || title}</p>

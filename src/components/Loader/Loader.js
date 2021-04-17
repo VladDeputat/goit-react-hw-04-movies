@@ -5,9 +5,9 @@ const Spinner = () => (
   <Loader
     className={loader}
     type="ThreeDots"
-    color="#3f51b5"
-    height={100}
-    width={100}
+    color="rgb(194, 10, 10)"
+    height={50}
+    width={200}
     timeout={3000}
   />
 );
