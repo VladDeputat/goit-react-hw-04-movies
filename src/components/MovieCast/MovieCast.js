@@ -35,7 +35,7 @@ export default class MovieCast extends Component {
         {this.state.cast.length === 0 && <h1>No information ¯\_(ツ)_/¯</h1>}
         <div className={styles.castConteiner}>
           {this.state.cast.map(actor => (
-            <div className={styles.actorCard}>
+            <div key={actor.id} className={styles.actorCard}>
               <img
                 className={styles.actorPhoto}
                 src={

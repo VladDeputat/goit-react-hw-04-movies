@@ -8,7 +8,7 @@ export default {
     return axios.get(`${BASE_URL}/trending/all/day?api_key=${KEY}`);
   },
 
-  searcMovies(query = 'dog') {
+  searcMovies(query = '') {
     return axios.get(
       `${BASE_URL}/search/movie?api_key=${KEY}&language=en-US&query=${query}&page=1&include_adult=false`,
     );

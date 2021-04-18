@@ -2,7 +2,7 @@ import styles from './SearchBar.module.scss';
 
 import React, { Component } from 'react';
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
   state = {
     query: '',
   };
@@ -38,3 +38,5 @@ export default class SearchBar extends Component {
     );
   }
 }
+
+export default SearchBar;

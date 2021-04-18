@@ -1,11 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import Api from '../../servises/Api';
 import Loader from '../Loader/Loader';
-import MovieCast from '../MovieCast/MovieCast';
-import MovieRewiews from '../MovieReviews/MovieReviews';
 import styles from './MovieDetails.module.scss';
 import noImg from '../../img/noImg.jpg';
+const MovieCast = lazy(() =>
+  import('../MovieCast/MovieCast' /* webpackChunkName:"MovieCast" */),
+);
+const MovieRewiews = lazy(() =>
+  import('../MovieReviews/MovieReviews' /* webpackChunkName:"MovieReviews" */),
+);
 
 export default class MovieDetails extends Component {
   state = {
@@ -25,9 +29,12 @@ export default class MovieDetails extends Component {
       console.log(error);
     } finally {
       this.setState({ isLoading: false });
-      console.log(this.state.currentMovie.poster_path);
     }
   }
+
+  handleGoBack = () => {
+    this.props.history.push(this.props.location?.state?.from || '/');
+  };
 
   render() {
     const {
@@ -47,7 +54,7 @@ export default class MovieDetails extends Component {
           <button
             type="button"
             className={styles.goBackBtn}
-            onClick={() => this.props.history.push('/movies')}
+            onClick={this.handleGoBack}
           >
             Go back
           </button>
@@ -70,18 +77,37 @@ export default class MovieDetails extends Component {
           </div>
           <h4>Aditional information</h4>
           <ul>
-            <NavLink to={`${this.props.match.url}/cast`}>
+            <NavLink
+              to={{
+                pathname: `${this.props.match.url}/cast`,
+                state: {
+                  from: this.props.location.state.from,
+                },
+              }}
+            >
               <li className={styles.adInfoListItem}>Cast</li>
             </NavLink>
-            <NavLink to={`${this.props.match.url}/reviews`}>
+            <NavLink
+              to={{
+                pathname: `${this.props.match.url}/reviews`,
+                state: {
+                  from: this.props.location.state.from,
+                },
+              }}
+            >
               <li className={styles.adInfoListItem}>Reviews</li>
             </NavLink>
           </ul>
-          <Route path={`${this.props.match.path}/cast`} component={MovieCast} />
-          <Route
-            path={`${this.props.match.path}/reviews`}
-            component={MovieRewiews}
-          />
+          <Suspense fallback={<Loader />}>
+            <Route
+              path={`${this.props.match.path}/cast`}
+              component={MovieCast}
+            />
+            <Route
+              path={`${this.props.match.path}/reviews`}
+              component={MovieRewiews}
+            />
+          </Suspense>
         </div>
       </>
     );
