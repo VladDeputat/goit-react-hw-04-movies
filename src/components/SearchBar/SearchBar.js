@@ -1,5 +1,5 @@
 import styles from './SearchBar.module.scss';
-import PropTypes, { arrayOf } from 'prop-types';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class SearchBar extends Component {

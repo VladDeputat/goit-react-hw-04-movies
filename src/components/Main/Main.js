@@ -8,10 +8,10 @@ const HomePage = lazy(() =>
 const MoviesPage = lazy(() =>
   import('../../pages/MoviesPage.js' /* webpackChunkName:"MoviesPage" */),
 );
-const MovieDetails = lazy(() =>
+const MovieDetailsPage = lazy(() =>
   import(
-    '../MovieDetails/MovieDetails.js'
-    /* webpackChunkName:"MovieDetails" */
+    '../../pages/MovieDetailsPage.js'
+    /* webpackChunkName:"MovieDetailsPage" */
   ),
 );
 
@@ -22,7 +22,7 @@ const Main = () => {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/movies" component={MoviesPage} />
-          <Route path="/movies/:movieId" component={MovieDetails} />
+          <Route path="/movies/:movieId" component={MovieDetailsPage} />
           <Redirect to="/" />
         </Switch>
       </Suspense>

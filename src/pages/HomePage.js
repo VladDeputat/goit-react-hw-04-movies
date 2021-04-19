@@ -11,8 +11,13 @@ export default class HomePage extends Component {
 
   async componentDidMount() {
     this.setState({ isLoading: true });
-    await this.getMovies();
-    this.setState({ isLoading: false });
+    try {
+      await this.getMovies();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.setState({ isLoading: false });
+    }
   }
 
   getMovies = () => {
